@@ -49,7 +49,6 @@ const Checkout = () => {
     // Lọc các voucher hợp lệ theo điều kiện selectedStore và used = false
     const [filteredVouchers, setFilteredVouchers] = useState([]);
     useEffect(() => {
-        // console.log('listVouchersUser: ', listVouchersUser);
         if (listVouchersUser && listVouchersUser.length > 0) {
             const vouchers = listVouchersUser ? (listVouchersUser.filter(
                 (voucher) => voucher.storeId.includes(+selectedStore.storeId) && !voucher.used
@@ -58,23 +57,6 @@ const Checkout = () => {
             setFilteredVouchers(vouchers)
         }
     }, [listVouchersUser]);
-    // const filteredVouchers = listVouchersUser ? (listVouchersUser.filter(
-    //     (voucher) => voucher.storeId.includes(selectedStore.storeId) && !voucher.used
-    // )) : [];
-
-    // useEffect(() => {
-    //     // Nếu có voucher hợp lệ, chọn mã đầu tiên từ `filteredVouchers`
-    //     if (filteredVouchers && filteredVouchers.length > 0) {
-    //         setSelectedVoucherId(filteredVouchers[0].voucherId);
-    //         setSelectedVoucher(filteredVouchers[0]);
-    //         setPromotion(+filteredVouchers[0].discountPercent);
-    //     } else {
-    //         // Nếu không có voucher hợp lệ, đặt các giá trị về mặc định
-    //         setSelectedVoucherId("0");
-    //         setSelectedVoucher(null);
-    //         setPromotion(0);
-    //     }
-    // }, [filteredVouchers]);
 
     useEffect(() => {
         // Cập nhật `selectedVoucher` và `promotion` khi `selectedVoucherId` thay đổi
@@ -87,12 +69,6 @@ const Checkout = () => {
             setPromotion(0);
         }
     }, [selectedVoucherId, filteredVouchers]);
-    // useEffect(() => { // Mới vô chọn mã đầu tiên
-    //     if (listVouchersUser && listVouchersUser.length > 0) {
-    //         setSelectedVoucherId(listVouchersUser[0].voucherId);
-    //     }
-    // }, [listVouchersUser]);
-
     const [fullname, setFullname] = useState(accountInfo.fullName);
     const [phonenumber, setPhonenumber] = useState(accountInfo.phoneNumber);
     const [address, setAddress] = useState("Địa chỉ của bạn");
@@ -149,8 +125,6 @@ const Checkout = () => {
     // MAP: OpenRouteService
     const [addressCoords, setAddressCoords] = useState([16.075966, 108.149805]); // Tọa độ click -> Chọn giao hàng ở đó -> Trên Map
     const [currentCoords, setCurrentCoords] = useState([16.075966, 108.149805]); // Tọa độ hiện tại của mình
-    // const [error, setError] = useState(null);
-    // const [clickedCoords, setClickedCoords] = useState(null); // Tọa độ click
     const apiKey = '5b3ce3597851110001cf6248d480712f52d0466d8d71a3927b194e84Y';
 
     // Lấy tọa độ hiện tại
@@ -160,8 +134,6 @@ const Checkout = () => {
                 (position) => {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
-                    // console.log("Current Latitude:", latitude);
-                    // console.log("Current Longitude:", longitude);
                     const latLon = [latitude, longitude];
                     setAddressCoords(latLon);
                     setCurrentCoords(latLon);

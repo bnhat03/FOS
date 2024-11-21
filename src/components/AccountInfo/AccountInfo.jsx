@@ -18,7 +18,6 @@ const AccountInfo = () => {
   const handleSaveChangeClick = () => {
     setIsEditing(false); // update
     dispatch(updateProfile(fullname, avatarFile, email, address));
-    // dispatch(getUserAccount());
     dispatch(updateAccountAuth(fullname, avatarPreview.slice(22), email, address));
   };
 
@@ -39,10 +38,6 @@ const AccountInfo = () => {
   };
 
   // state input
-  // setState(redux) => Chỉ lấy redux lần đầu thôi 
-  // => Nếu redux thay đổi -> state không thay đổi theo
-  // -> Cần viết thêm useEffect có dependency = redux => redux thay đổi thì state thay đổi tương ứng
-  // -> Bựa dừ cứ tưởng state phụ thuộc theo redux ban đầu thì sau ni vẫn phụ thuộc tiếp
   const [fullname, setFullname] = useState(accountInfo.fullName); // chỉ lấy accountInfo lần đầu
   const [phonenumber, setPhonenumber] = useState(accountInfo.phoneNumber);
   const [address, setAddress] = useState(accountInfo.address);
@@ -61,10 +56,7 @@ const AccountInfo = () => {
       reader.readAsDataURL(file); // Đọc file dưới dạng base64
     }
   };
-  // useEffect(() => {
-  //   dispatch(getUserAccount());
-  // }, [dispatch]);
-  // Cập nhật state sau khi accountInfo từ Redux store thay đổi
+
   useEffect(() => { // Đảm bảo redux thay đổi thì state thay đổi theo luôn (VD: refresh trang)
     if (accountInfo) {
       setFullname(accountInfo.fullName || '');

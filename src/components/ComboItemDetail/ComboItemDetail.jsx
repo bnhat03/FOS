@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './ComboItemDetail.scss'
-import { assets } from '../../assets/assets'
 import logoStar from '../../assets/logo/star.png'
 import logoStarNobgColor from '../../assets/logo/star_no_bgcolor.png'
 import logoUser from '../../assets/logo/user.png'
@@ -12,7 +11,6 @@ import { fetchComboById, fetchRatingComboById, fetchSimilarCombos } from "../../
 import { fetchAllStores } from "../../redux/actions/storeActions";
 import ComboItemModal from '../ComboItemModal/ComboItemModal'
 import FoodDisplay from '../FoodDisplay/FoodDisplay'
-
 
 const ComboItemDetail = () => {
   // Preview image
@@ -32,7 +30,7 @@ const ComboItemDetail = () => {
     const date = new Date(dateString);
     const daysOfWeek = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
     const dayOfWeek = daysOfWeek[date.getDay()];
-    const day = date.getDate();  // Lấy ngày
+    const day = date.getDate();
     const month = date.getMonth() + 1;  // Lấy tháng (tháng trong JS bắt đầu từ 0)
     const year = date.getFullYear();  // Lấy năm
     const hours = date.getHours().toString().padStart(2, '0');  // Lấy giờ (padStart để đảm bảo đủ 2 chữ số)
@@ -77,12 +75,10 @@ const ComboItemDetail = () => {
       const productStoreIds = product.stores.map(store => store.storeId);
       commonStores = commonStores.filter(storeId => productStoreIds.includes(storeId));
     });
-
     // Lọc lại thông tin chi tiết của các stores có mặt trong commonStores
     const filteredStores = combo.products[0].stores.filter(store =>
       commonStores.includes(store.storeId)
     );
-    // console.log('list stores: ', filteredStores);
     return filteredStores;
   };
 
@@ -99,7 +95,6 @@ const ComboItemDetail = () => {
     dispatch(fetchAllStores());
     dispatch(fetchSimilarCombos(id));
     dispatch(fetchRatingComboById(id));
-
   }, [id]);
 
   // Select -> Lọc số sao ở review
@@ -249,7 +244,7 @@ const ComboItemDetail = () => {
                       <span className="username-user">
                         {
                           // Xử lý trường hợp là bạn luôn => id user
-                          comment?.userId && account && +comment.userId === +account.id ? "Bạn" : (
+                          comment?.userId && account && +comment.userId === +account.id ? "Bạn" : ( // bạn / Tên thật KH / Khách hàng
                             comment?.dataUser?.fullName ? comment.dataUser.fullName : 'Khách hàng'
                           )
                         }

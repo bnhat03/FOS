@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById, fetchRatingProductById, fetchSimilarProducts } from "../../redux/actions/productActions";
 import FoodDisplay from '../FoodDisplay/FoodDisplay'
 
-
 const ProductItemDetail = () => {
   // Preview image
   const [showImagePreview, setShowImagePreview] = useState(false);

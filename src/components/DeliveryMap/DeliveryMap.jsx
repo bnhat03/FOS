@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import './DeliveryMap.scss'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStoreById } from "../../redux/actions/storeActions";
-import { fetchProductsByIdStore } from '../../redux/actions/productActions';
 import axios from 'axios';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, Tooltip, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -12,7 +10,6 @@ import { toast } from 'react-toastify';
 import logoUser from '../../assets/logo/user.png'
 
 import L from 'leaflet';  // Import Leaflet to customize icon
-// import logoUser from '../../assets/logo/user.png'
 import iconUser from '../../assets/logo/map_user.png'
 import iconShipper from '../../assets/logo/map_shipper.png'
 import { fetchOrderInTransitByOrderCode } from '../../redux/actions/userActions';
@@ -24,13 +21,10 @@ const LocationMarker = ({ setPosition }) => {
     click(e) {
       const { lat, lng } = e.latlng;
       setPosition([lat, lng]); // Cập nhật vị trí với tọa độ đã click
-      // console.log('>>> longitude 2: ', lng);
-      // console.log('>>> latitude 2: ', lat);
     },
   });
   return null;
 };
-
 
 const DeliveryMap = () => {
   const { orderCode } = useParams();
@@ -38,9 +32,7 @@ const DeliveryMap = () => {
   const orderInTransit = useSelector((state) => {
     return state.user.orderInTransit;
   })
-
   const [showModal, setShowModal] = useState(false); // Hiển thị preview ảnh
-
   // Format Date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -64,15 +56,13 @@ const DeliveryMap = () => {
   //     setShipperCoords([orderInTransit.shipperDetail.longitude, orderInTransit.shipperDetail.latitude]);
   //     console.log('>>> orderCoords: ', orderCoords);
   //     console.log('>>> shipperCoords: ', shipperCoords);
-
   //     fetchRoute(); // Call API ORS hiển thị trên map: route + distance + duration
-
   //   }
   // }, [orderInTransit]);
+
   const [orderCoords, setOrderCoords] = useState([107.9006, 16.2554]); // [lon, lat]: Tọa độ nhận hàng
   const [shipperCoords, setShipperCoords] = useState(null); // Tọa độ hiện tại của Shipper
   useEffect(() => {
-    // console.log('orderCode: ', orderCode);
     dispatch(fetchOrderInTransitByOrderCode(orderCode));
   }, [orderCode]);
 
@@ -154,7 +144,6 @@ const DeliveryMap = () => {
     return null;
   };
 
-
   // Tọa độ -> Địa chỉ
   // const fetchAddressFromCoordinates = async (latitude, longitude) => {
   //   try {
@@ -182,7 +171,6 @@ const DeliveryMap = () => {
       toast.warn('Chưa có đủ thông tin tọa độ để tìm đường.');
       return;
     }
-    // alert('hehe');
     try {
       const response = await axios.post(
         `https://api.openrouteservice.org/v2/directions/driving-car`,

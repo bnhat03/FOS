@@ -8,7 +8,6 @@ export const fetchCategoriesRequest = () => {
     };
 
 };
-
 export const fetchCategoriesSuccess = (data, drinkCategoryId) => {
     return {
         type: types.FETCH_CATEGORY_SUCCESS,

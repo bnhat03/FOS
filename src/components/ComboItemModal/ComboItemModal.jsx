@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ComboItemModal.scss';
 import StoreList from '../StoreList/StoreList';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,15 +9,11 @@ import { toast } from "react-toastify";
 import { addToCartCombo, placeOrderComboUsingBuyNow } from "../../redux/actions/userActions";
 import { fetchAllStores } from "../../redux/actions/storeActions";
 import { showLoginModal } from "../../redux/actions/modalActions";
-// import { fetchAllDrinks } from "../../redux/actions/productActions";
-
 import { Form } from 'react-bootstrap';
-
 
 const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, isAddToCart }) => { // 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // Size
   const listSizes = useSelector((state) => state.size.listSizes);
   const allDrinks = useSelector((state) => state.product.allDrinks);
@@ -54,10 +50,8 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
 
   // Fetch all sizes 
   useEffect(() => {
-    // console.log('list stores: ', stores);
     dispatch(fetchAllSizes());
     dispatch(fetchAllStores());
-    // dispatch(fetchAllDrinks());
   }, [dispatch]);
   // list sizes thay đổi -> Chọn size đầu tiên
   useEffect(() => {
@@ -81,7 +75,6 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
   useEffect(() => {
     const drink = allDrinks.find(drink => +drink.productId === +selectedDrinkId);
     setSelectedDrink(drink);
-    // console.log('>>> selectedDrink: ', selectedDrink);
   }, [selectedDrinkId, allDrinks]);
 
   // ADD TO CART / BUY NOW
@@ -100,7 +93,6 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
       else {
         dispatch(addToCartCombo(combo.comboId, quantity, selectedStore.storeId, selectedSize, 'Pending', selectedDrink));
         handleModalClose();
-
         // if (quantity > product.stockQuantity) {
         //   toast.error("Số lượng sản phẩm vượt quy định!")
         // }
@@ -115,35 +107,24 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
   const handleBuyNow = () => {
     if (isLogin === false) { // chưa login
       handleModalClose();
-      dispatch(showLoginModal()); // hiện modal login
+      dispatch(showLoginModal());
     }
     else {
       if (stores.length === 0) {
         toast.error('Sản phẩm không có ở cửa hàng nào!');
       }
       else {
-        if (!selectedStore) { // Không chọn cửa hàng
+        if (!selectedStore) {
           toast.error('Vui lòng chọn cửa hàng');
         }
         else {
           dispatch(placeOrderComboUsingBuyNow(combo, finalPrice, quantity, selectedStore, selectedSize, selectedDrink));
-          // console.log('>>> selectedDrink: ', selectedDrink);
           navigate('/checkout');
           handleModalClose();
-
-          // if (quantity > product.stockQuantity) {
-          //   toast.error("Số lượng sản phẩm vượt quy định!");
-          // }
-          // else { // Giả sử thêm vào thành công (Chưa xủ lý các điều kiện -> BE chưa làm)
-          //   dispatch(placeOrderUsingBuyNow(product, quantity, selectedStore, selectedSize));
-          //   navigate('/checkout');
-          //   handleModalClose();
-          // }
         }
       }
     }
   }
-
   // Reset tất cả state khi đóng modal
   const handleModalClose = () => {
     setQuantity(1);
@@ -154,12 +135,6 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
       setFinalPrice(combo.price);
     }, 500);
   };
-
-  const drinks = [
-    { drinkId: 1, drinkName: "Coca Cola", price: 10000 },
-    { drinkId: 2, drinkName: "Pepsi", price: 10000 },
-    { drinkId: 3, drinkName: "7Up", price: 10000 }
-  ]
   return (
     <Modal
       show={showModalCombo}
@@ -256,15 +231,12 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
                       </div>
                       <StoreList stores={stores} onSelectStore={handleStoreSelect} selectedStore={selectedStore} />
                     </div>
-
-                    {/* Note: Chọn cửa hàng rồi mới hiển thị kích cỡ + số lượng còn lại */}
                     {
-                      // selectedStore ? (
                       <>
                         <div className="size-container">
                           <span className='title'>Chọn kích cỡ</span>
                           <div className="list-size">
-                            {listSizes.map((size, index) => ( // Note: Sửa lại listSizes là của sản phẩm ở cửa hàng được chọn => Default size: first item
+                            {listSizes.map((size, index) => (
                               <div
                                 key={index}
                                 className={`size-item ${selectedSize === size.name ? 'selected' : ''}`}
@@ -279,11 +251,6 @@ const ComboItemModal = ({ showModalCombo, handleCloseModalCombo, combo, stores, 
                             {selectedStore ? <span>Số lượng sản phẩm còn lại: {product.stockQuantity}</span> : <span></span>}
                           </div> */}
                       </>
-                      // )
-                      //   : (
-                      //     <div></div>
-                      //   )
-
                     }
                     <div className="btn-container">
                       {

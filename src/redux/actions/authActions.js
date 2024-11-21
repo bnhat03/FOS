@@ -12,20 +12,17 @@ import {
 } from "../../services/authService";
 import { toast } from "react-toastify";
 import { resetAllUser, fetchProductsInCart } from "./userActions";
-
 // Register New User
 const registerNewUserSuccess = () => {
     return {
         type: types.REGISTER_NEW_USER_SUCCESS,
     };
 };
-
 const registerNewUserError = (errorMessage) => {
     return {
         type: types.REGISTER_NEW_USER_ERROR,
     };
 };
-
 const registerNewUser = (fullName, password, phoneNumber, email, address) => {
     return async (dispatch) => {
         try {
@@ -267,7 +264,6 @@ const changePasswordUser = (oldPassword, newPassword) => {
             const errorMessage = error.response && error.response.data
                 ? error.response.data.message
                 : "Đã xảy ra lỗi khi đổi mật khẩu.";
-
             // Hiển thị thông báo lỗi
             toast.error(errorMessage);
         }

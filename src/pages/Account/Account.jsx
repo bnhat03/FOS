@@ -7,12 +7,6 @@ import Orders from '../../components/Orders/Orders';
 import { logoutUser } from '../../redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 const Account = () => {
-  const menuOptions = [
-    { name: "Thông tin tài khoản", path: "info" },
-    { name: "Đổi mật khẩu", path: "change-password" },
-    { name: "Đơn hàng của bạn", path: "orders" },
-    { name: "Đăng xuất", path: "logout" }
-  ];
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {

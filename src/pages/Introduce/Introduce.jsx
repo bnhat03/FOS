@@ -12,7 +12,6 @@ import teamwork from "../../assets/blog/teamwork.png";
 import quality from "../../assets/blog/quality.png";
 import saving from "../../assets/blog/saving.png";
 
-
 const Introduce = () => {
   return (
     <div>
@@ -121,15 +120,9 @@ const Introduce = () => {
                 <h5>TIẾT KIỆM</h5>
               </Carousel.Caption>
             </Carousel.Item>
-
           </Carousel>
         </Row>
-
       </section>
-
-
-
-
     </div>
   )
 }

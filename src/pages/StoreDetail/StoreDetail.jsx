@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './StoreDetail.scss'
-import test_product from "../../assets/food-yummy/product1.jpg";
 import { assets } from '../../assets/assets'
-
 import DownloadImage from "../../assets/shop/ggmap.jpg";
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
-import store7 from "../../assets/image_gg/introduce_7.png";
-import store8 from "../../assets/image_gg/introduce_8.png";
-import store9 from "../../assets/image_gg/introduce_9.png";
-import store10 from "../../assets/image_gg/introduce_10.png";
 
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +14,6 @@ import { fetchUpdate } from '../../redux/actions/chatStoreAction';
 import VoucherList from '../../components/VoucherList/VoucherList';
 import { fetchVouchersByIdStore } from '../../redux/actions/promotionActions';
 import { saveVoucher, fetchVouchers } from '../../redux/actions/userActions';
-
 
 const StoreDetail = () => {
   const { setShowChat, setSelectedUser } = useContext(ChatContext);
@@ -49,8 +42,6 @@ const StoreDetail = () => {
     return state.user.listVouchersUser;
   })
 
-
-
   const handleClickChatStore = async () => {
     const on = await SearchOwner();
     // console.log("Onn: ",on)
@@ -66,19 +57,14 @@ const StoreDetail = () => {
       setSelectedUser(on);
       setShowChat(true);
     }
-
   }
 
   const loadStoreAgain = async () => {
     try {
-      // console.log("Loading stores again...");
-
       const previousOnlineUsers = stores
         .filter(user => user.online === true)
         .map(user => user.id);
-
       const res = await GetAllStoresChat();
-
       if (res.data.EC === 0 && res.data.DT) {
         const updatedStores = res.data.DT.map(store => ({
           ...store,
@@ -92,7 +78,6 @@ const StoreDetail = () => {
       console.error("Lỗi khi thực hiện loadStoreAgain:", error);
     }
   };
-
   const saveMessage = async (idOwner) => {
     const sender = idOwner;
     const receiver = Number(idU);
@@ -164,24 +149,6 @@ const StoreDetail = () => {
     console.log('voucher cửa hàng: ', listVouchersStore);
     console.log('voucher user: ', listVouchersUser);
   }, [listVouchersUser, listVouchersStore]);
-
-  // useEffect(() => {
-  //   // Chỉ gọi API khi dữ liệu chưa có hoặc khi thay đổi `id`
-  //   if (!storeDetail || storeDetail.id !== id) {
-  //     dispatch(fetchStoreById(id));
-  //   }
-  //   if (!listProductsByIdStore.length || listProductsByIdStore[0]?.storeId !== id) {
-  //     dispatch(fetchProductsByIdStore(id));
-  //   }
-  //   if (!listVouchersStore.length || listVouchersStore[0]?.storeId !== id) {
-  //     dispatch(fetchVouchersByIdStore(id));
-  //   }
-  //   if (!listVouchersUser.length) {
-  //     dispatch(fetchVouchers());
-  //   }
-  // }, [id, dispatch, storeDetail, listProductsByIdStore, listVouchersStore, listVouchersUser]);
-
-
   if (!storeDetail) {
     return <div>Không có thông tin cửa hàng.</div>;
   }
@@ -236,7 +203,6 @@ const StoreDetail = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-
             </div>
           </div>
         </div>

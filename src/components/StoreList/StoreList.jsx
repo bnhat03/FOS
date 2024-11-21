@@ -1,4 +1,4 @@
-// Scroll danh sách cửa hàng có sản phẩm trong page Product Detail
+// Scroll danh sách cửa hàng có sản phẩm trong page Product Detail, ...
 import React from 'react';
 import './StoreList.scss';
 

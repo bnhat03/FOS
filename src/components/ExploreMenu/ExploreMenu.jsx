@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './ExploreMenu.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllCategories } from "../../redux/actions/categoryActions";
 import { NavLink } from "react-router-dom";
 import cate_1 from "../../assets/navbar/cate_1.png";
 

@@ -1,14 +1,7 @@
-// Display in Category page
 import React, { useState } from 'react'
 import './ProductItem.scss'
 import { Link } from "react-router-dom";
 import ProductItemModal from '../ProductItemModal/ProductItemModal';
-
-import store1 from "../../assets/image_gg/introduce_1.png";
-import store2 from "../../assets/image_gg/introduce_2.png";
-import store3 from "../../assets/image_gg/introduce_3.png";
-import store4 from "../../assets/image_gg/introduce_4.png";
-import store5 from "../../assets/image_gg/introduce_5.png";
 
 const ProductItem = ({ product, index }) => {
   // Modal

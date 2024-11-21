@@ -7,28 +7,23 @@ import MoonLoader from 'react-spinners/MoonLoader';
 
 const FoodDisplay = ({ listProducts, isLoading, itemsPerPage = 4 }) => {
   const [activePage, setActivePage] = useState(1);
-
   // Tính toán số trang dựa trên danh sách sản phẩm và số sản phẩm mỗi trang
   const totalPages = Math.ceil(listProducts.length / itemsPerPage);
-
   // Lấy danh sách sản phẩm cho trang hiện tại
   const currentProducts = listProducts && listProducts.length > 0 ? (listProducts.slice(
     (activePage - 1) * itemsPerPage,
     activePage * itemsPerPage
   )) : [];
-
   // Nhấn vào một trang
   const handlePageChange = (pageNumber) => {
     setActivePage(pageNumber);
   };
-
   // Nhấn nút Previous
   const handlePrevious = () => {
     if (activePage > 1) {
       setActivePage(activePage - 1);
     }
   };
-
   // Nhấn nút Next
   const handleNext = () => {
     if (activePage < totalPages) {
@@ -83,5 +78,4 @@ const FoodDisplay = ({ listProducts, isLoading, itemsPerPage = 4 }) => {
     </>
   );
 };
-
 export default FoodDisplay;

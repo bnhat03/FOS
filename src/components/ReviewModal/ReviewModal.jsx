@@ -18,7 +18,6 @@ const ReviewModal = ({ showModal, handleClose, orderDetails }) => {
     if (orderDetails) {
       setListProducts(orderDetails.orderDetails.filter(item => item.type === 'product'));
       setListCombos(orderDetails.orderDetails.filter(item => item.type === 'combo'));
-      // console.log('>>> check list products: ', listProducts);
     }
   }, [orderDetails]);
 
@@ -62,7 +61,6 @@ const ReviewModal = ({ showModal, handleClose, orderDetails }) => {
     setCommentContent(event.target.value);
   };
   const handleSubmit = () => {
-    // console.log('>>> order detail đây nè: ', orderDetails);
     const listProductIds = listProducts.map((product) => product.productDetail.productId)
       .join(',');
     const listComboIds = listCombos.map((combo) => combo.comboDetail.comboId)

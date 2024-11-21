@@ -1,13 +1,10 @@
 // Section 2: Codes4Education
-
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Phone from "../../assets/about/smartphone.png";
 import Salad from "../../assets/about/salad.png";
 import Delivery from "../../assets/about/delivery-bike.png";
 import './Service.scss'
-
-// Mock Data Cards
 const mockData = [
   {
     image: Phone,

@@ -1,11 +1,6 @@
 import React, { useContext, useState } from 'react'
 import './FoodItem.scss'
 import { Link } from "react-router-dom";
-import store1 from "../../assets/image_gg/introduce_1.png";
-import store2 from "../../assets/image_gg/introduce_2.png";
-import store3 from "../../assets/image_gg/introduce_3.png";
-import store4 from "../../assets/image_gg/introduce_4.png";
-import store5 from "../../assets/image_gg/introduce_5.png";
 import ProductItemModal from '../ProductItemModal/ProductItemModal';
 
 const FoodItem = ({ product }) => { // product => combo/product
@@ -61,5 +56,4 @@ const FoodItem = ({ product }) => { // product => combo/product
     </div>
   )
 }
-
 export default FoodItem

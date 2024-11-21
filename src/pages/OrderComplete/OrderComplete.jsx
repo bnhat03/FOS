@@ -20,7 +20,6 @@ const OrderComplete = () => {
                         <button>Về trang chủ</button>
                     </NavLink>
                 </div>
-
             </div>
         </div>
     )

@@ -9,7 +9,6 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import MoonLoader from 'react-spinners/MoonLoader';
 
-
 export default function Category() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -29,13 +28,13 @@ export default function Category() {
     dispatch(fetchProductsByIdCategory(id));
   }, [id, dispatch]); // 'id' category thay đổi -> lấy lại list products
 
-  // Hàm xử lý thay đổi từ khóa tìm kiếm
+  // Thay đổi từ khóa tìm kiếm
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     setActivePage(1); // Reset về trang 1 khi tìm kiếm mới
   };
 
-  // Hàm xử lý thay đổi sắp xếp
+  // Thay đổi sắp xếp
   const handleSortChange = (event) => {
     setSelectedSort(event.target.value);
     setActivePage(1); // Reset về trang 1 khi thay đổi sắp xếp

@@ -9,11 +9,9 @@ import { toast } from "react-toastify";
 import { addToCartProduct, placeOrderUsingBuyNow } from "../../redux/actions/userActions";
 import { showLoginModal } from "../../redux/actions/modalActions";
 
-
 const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, stores, isAddToCart }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // Size
   const listSizes = useSelector((state) => state.size.listSizes);
   const isLogin = useSelector((state) => state.auth.isAuthenticated);
@@ -36,7 +34,6 @@ const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, 
   //       break;
   //   }
   // };
-
   // Optimize change size
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -116,20 +113,11 @@ const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, 
         if (!selectedStore) { // Không chọn cửa hàng
           toast.error('Vui lòng chọn cửa hàng');
         }
-        else { // if: Xử lý tiếp  (Báo lỗi các trường hợp)
-          // Note Xử lý: Sản phẩm có:
-          // 1. Size khác nhau
-          // 2. Cửa hàng khác nhau
-          // => Hiển thị số lượng sản phẩm ở cửa hàng tại mỗi size khác nhau
-          // => 1. Chọn cửa hàng mới hiển thị size  (Size default: first item)
-          //    2. Chọn size -> Hiển thị lại số lượng
-          //    3. Chuyển cửa hàng -> Chuyển listSizes + Default size + Số lượng
-
-          // else: Mua được
+        else {
           if (quantity > product.stockQuantity) {
             toast.error("Số lượng sản phẩm vượt quy định!");
           }
-          else { // Giả sử thêm vào thành công (Chưa xủ lý các điều kiện -> BE chưa làm)
+          else {
             dispatch(placeOrderUsingBuyNow(product, finalPrice, quantity, selectedStore, selectedSize));
             navigate('/checkout');
             handleModalClose();
@@ -138,7 +126,6 @@ const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, 
       }
     }
   }
-
   // Reset tất cả state khi đóng modal
   const handleModalClose = () => {
     setQuantity(1);
@@ -198,9 +185,7 @@ const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, 
                       <StoreList stores={stores} onSelectStore={handleStoreSelect} selectedStore={selectedStore} />
                     </div>
 
-                    {/* Note: Chọn cửa hàng rồi mới hiển thị kích cỡ + số lượng còn lại */}
                     {
-                      // selectedStore ? (
                       <>
                         <div className="size-container">
                           <span className='title'>Chọn kích cỡ</span>
@@ -220,11 +205,6 @@ const ProductItemModal = ({ showModalProduct, handleCloseModalProduct, product, 
                             {selectedStore ? <span>Số lượng sản phẩm còn lại: {product.stockQuantity}</span> : <span></span>}
                           </div> */}
                       </>
-                      // )
-                      //   : (
-                      //     <div></div>
-                      //   )
-
                     }
                     <div className="btn-container">
                       {

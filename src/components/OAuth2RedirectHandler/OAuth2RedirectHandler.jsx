@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAccount } from '../../redux/actions/authActions';
 
-
 const OAuth2RedirectHandler = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,8 +23,6 @@ const OAuth2RedirectHandler = () => {
       // alert('GG không thành công -> Login')
     }
   }, [navigate, location]);
-
-
   return <p>Redirecting...</p>;
 };
 

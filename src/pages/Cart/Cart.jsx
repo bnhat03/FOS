@@ -25,8 +25,7 @@ const Cart = () => {
     return state.user.listCombosInCart;
   })
 
-  // State to track checked items in the cart
-  const [checkedItems, setCheckedItems] = useState([]); // Added state for tracking selected items
+  const [checkedItems, setCheckedItems] = useState([]); // list rows checked
 
   useEffect(() => {
     dispatch(fetchProductsInCart());
@@ -47,7 +46,7 @@ const Cart = () => {
   }, [listProductsInCart, listCombosInCart]);
 
 
-  // Handle checkbox toggle for each cart item
+  // Thay đối state khi nhấn vô checkbox của 1 row
   const handleCheckboxChange = (cartId) => {
     setCheckedItems((prevCheckedItems) =>
       prevCheckedItems.includes(cartId)
@@ -129,7 +128,6 @@ const Cart = () => {
             checkedItems.includes(item.cartId) &&
             +item.combo?.dataStore?.storeId === selectedStore
         );
-        // console.log('selectedProducts: ', selectedProducts);
         console.log('id selectedStore: ', selectedStore);
 
         dispatch(placeOrderUsingAddToCart(selectedProducts, selectedCombos, selectedStore));
@@ -137,8 +135,6 @@ const Cart = () => {
       }
     }
   };
-
-
   // const [selectedStore, setSelectedStore] = useState("all");
   const [selectedStore, setSelectedStore] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");

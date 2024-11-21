@@ -9,15 +9,12 @@ const PlaceOrder = () => {
     amount: 1,
     address: "",
   });
-
   const [orderResponse, setOrderResponse] = useState(null);
-
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
   };
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");

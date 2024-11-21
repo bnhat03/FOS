@@ -8,14 +8,7 @@ import { fetchAllCategories } from "../../redux/actions/categoryActions";
 import logoCart from '../../assets/logo/cart.png'
 import logoUser from '../../assets/logo/user.png'
 
-import cate_1 from "../../assets/navbar/cate_1.png";
-import cate_2 from "../../assets/navbar/cate_2.png";
-import cate_3 from "../../assets/navbar/cate_3.png";
-import cate_4 from "../../assets/navbar/cate_4.png";
-import cate_5 from "../../assets/navbar/cate_5.png";
-import cate_6 from "../../assets/navbar/cate_6.png";
-import cate_7 from "../../assets/navbar/cate_7.png";
-import cate_8 from "../../assets/navbar/cate_8.png";
+import cate_1 from "../../assets/navbar/cate_1.png"; // combo
 import ChatButton from "../Chatbox/ChatButton";
 
 
@@ -54,8 +47,6 @@ const Navbar = () => {
   const isMenuActive = listCategories.some(
     (category) => location.pathname === `/category/${category.categoryId}` || location.pathname === `/combo`
   );
-
-
   // ??? -> sticky chưa hiểu: JS + CSS
   useEffect(() => {
     const handleScroll = () => {
@@ -149,28 +140,24 @@ const Navbar = () => {
         >
           Cửa hàng
         </NavLink>
-
-        {/* <NavLink
-          to="/test-ggmap"
-          className={({ isActive }) => (isActive ? 'active' : '')}
-        >
-          Test GGMAP
-        </NavLink> */}
-
-        <NavLink
-          to="/test-loading"
-          className={({ isActive }) => (isActive ? 'active' : '')}
-        >
-          Test LOADING
-        </NavLink>
-
         <NavLink
           to="/download"
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
           Tải ngay
         </NavLink>
-
+        {/* <NavLink
+          to="/test-ggmap"
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
+          Test GGMAP
+        </NavLink> */}
+        {/* <NavLink
+          to="/test-loading"
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
+          Test LOADING
+        </NavLink> */}
       </ul >
       <div className="navbar-right">
         {

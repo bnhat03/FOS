@@ -1,14 +1,6 @@
-// Display in Category page
 import React, { useState } from 'react'
 import './ComboItem.scss'
 import { Link } from "react-router-dom";
-import ProductItemModal from '../ProductItemModal/ProductItemModal';
-
-import store1 from "../../assets/image_gg/introduce_1.png";
-import store2 from "../../assets/image_gg/introduce_2.png";
-import store3 from "../../assets/image_gg/introduce_3.png";
-import store4 from "../../assets/image_gg/introduce_4.png";
-import store5 from "../../assets/image_gg/introduce_5.png";
 import ComboItemModal from '../ComboItemModal/ComboItemModal';
 
 const ComboItem = ({ combo, index }) => {
@@ -45,7 +37,6 @@ const ComboItem = ({ combo, index }) => {
     const filteredStores = combo.products[0].stores.filter(store =>
       commonStores.includes(store.storeId)
     );
-    // console.log('list stores: ', filteredStores);
     return filteredStores;
   };
   return (
@@ -76,5 +67,4 @@ const ComboItem = ({ combo, index }) => {
     </div>
   )
 }
-
 export default ComboItem
